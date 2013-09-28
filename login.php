@@ -8,10 +8,10 @@ if (empty($_POST) === false) {
 	$password = trim($_POST['password']);
 
 	if (empty($username) === true || empty($password) ===true) {
-		$errors[] = 'Sorry, but we need your username and password.';
+		$errors[] = 'We need your username and password.';
 	}
 	else if ($users->user_exists($username) === false) {
-		$errors[] = 'Sorry that username doesn\'t exist.';
+		$errors[] = 'That username doesn\'t exist.';
 	}
 	else {
 
@@ -24,7 +24,7 @@ if (empty($_POST) === false) {
 
 			$_SESSION['id'] = $login; //The user's id is now set into the user's session in the form of $_SESSION['id']
 
-			#Redirect the user to home.php
+			# -------------->>>>>>Redirect the user to Logged In Welcome<<<<<<<<--------------
 			header('Location: home.php');
 			exit();
 		}

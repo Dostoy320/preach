@@ -1,3 +1,8 @@
+<!--
+This is the greeting page a user would encounter from the email confiration system,
+which isn't currently implemented elsewhere in the app.
+-->
+
 <?php
 require 'core/init.php';
 $general->logged_in_protect();

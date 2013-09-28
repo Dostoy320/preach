@@ -19,7 +19,7 @@ $member_count 	= count($members);
 	<p>We have a total of <strong><?php echo $member_count; ?></strong> registered users.</p>
 	 
 	<?php
-	#Showing the username and the date of joining, using the date() function.
+	#Showing the username and the date of joining.
 	foreach ($members as $member) {
 	echo '<p>',$member['username'], ' joined: ', date('F j, Y', $member['time']), '</p>';
 	}
