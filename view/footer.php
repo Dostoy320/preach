@@ -1,5 +1,8 @@
 <footer>
-	<ul>copyright <?php echo date(Y); ?></ul>
-	<ul>Software by Adam Gregory</ul>
+	<ul>
+		<li>copyright <?php echo date(Y); ?></li>
+		<li>Adam Gregory</li>
+	</ul>
+</footer>
 </body>
 </html>

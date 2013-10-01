@@ -1,16 +1,16 @@
 @charset "utf-8";
 
+html {
+    height:100%;
+    width:100%;
+}
+
 body{
+    height:100%;
+    width:100%;
     font: 0.9em Tahoma, Verdana, Arial;
     line-height:160%;
     background: #ddd;
-}
-
-#container{
-    width: 1000px;
-    padding: 25px;
-    background: #fff;
-    margin: 100px auto 0 auto;
 }
 
 h4{
@@ -25,4 +25,31 @@ ul li{
     display: inline-block;
     padding: 15px;
     list-style: none;
+}
+
+header {
+    height:10%;
+    border-bottom: 1px solid;
+}
+
+#main {
+    min-height: 75%;
+}
+
+#container{
+    width: 1000px;
+    padding: 25px;
+    background: #fff;
+    margin: 100px auto 0 auto;
+}
+
+
+footer {
+    height:10%;
+    width:100%;
+    border-top: 1px solid;
+}
+
+footer ul  {
+    margin: 0 auto;
 }
