@@ -20,6 +20,7 @@ body{
     height:100%;
     width:100%;
     font-family: serif;
+    overflow: hidden;
  }
 
 form[name=login_form] {
@@ -36,6 +37,10 @@ input[name=blog_title] {
     margin-bottom: 5px;
     width:40%;
     min-width: 250px;
+}
+
+form[id=submit_post] #blog_text {
+   background-color: red;
 }
 
 form[id=submit_post] input[type=submit] {
@@ -74,7 +79,7 @@ header form ul li {
 }
 #main {
     width:80%;
-    height:70%;
+    height:75%;
     min-height: 550px;
     padding:2.5% 10% 2.5% 10%;
     overflow-y: auto;
@@ -89,8 +94,8 @@ form #conf_save {
 }
 
 footer {
-    height:8%;
-    min-height: 50px;
+    height:5%;
+    min-height: 30px;
     border-top: 1px solid;
     padding:2% 10% 2% 10%;
 }

@@ -3,20 +3,6 @@ $general->logged_out_protect();
 include 'header.php'; 
 ?>
 
-
-<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
-<script>
-        tinymce.init({
-        autosave_interval: "30s",
-        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
-        height: 400,
-        width: 800,
-        resize: "both",
-       	save_enablewhendirty: false,
-       	selector:'textarea'});
-</script>
-<script src="scripts/save.js"></script>
-
 <body>
 <div id='main'>
   <form action="index.php" method="post" id="submit_post">
@@ -33,6 +19,10 @@ include 'header.php';
   </form>
 </div>
 <div class="test"></div>
+
+<script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+<script type="text/javascript" src="scripts/tinymce.config.js"></script>
+<script type="text/javascript" src="scripts/save.js"></script>
 
 
 
