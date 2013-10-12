@@ -1,7 +1,7 @@
 
 <?php
 $general->logged_in_protect();
-include '/view/header.php';
+include 'header.php';
 ?>
 <body>
 	<div id="main">
@@ -27,5 +27,5 @@ include '/view/header.php';
 </html>
 
 <?php
-include '/view/footer.php'
+include 'footer.php'
 ?>

@@ -1,5 +1,5 @@
 <?php 
-include 'view/header.php';
+include 'header.php';
 ?>
 
 <div id='main'>
@@ -23,4 +23,4 @@ if (strlen($content[3]) > 0) {
 </div>
 
 <?php
-include 'view/footer.php';
+include 'footer.php';
