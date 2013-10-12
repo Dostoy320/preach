@@ -5,51 +5,94 @@ html {
     width:100%;
 }
 
+h2 {
+    line-height: 1em;
+    font-size: 160%;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 120%;
+    font-weight:bold;
+}
+
 body{
     height:100%;
     width:100%;
-    font: 0.9em Tahoma, Verdana, Arial;
-    line-height:160%;
-    background: #ddd;
+    font-family: serif;
+ }
+
+form[name=login_form] {
+    margin-top: 10px;
 }
 
-h4{
-    margin: 0;
+input[type=submit] {
+    border:1px solid #969696;
+    margin:2px;
+    border-radius: 3px;
+ }
+
+input[name=blog_title] {
+    margin-bottom: 5px;
+    width:40%;
+    min-width: 250px;
 }
 
-ul{
-    padding: 0;
+form[id=submit_post] input[type=submit] {
+    background-color: #FA9D87;
 }
 
-ul li{
-    display: inline-block;
-    padding: 15px;
-    list-style: none;
+form[id=submit_post] input[type=button] {
+    border:1px solid #969696;
+    margin:2px;
+    border-radius: 3px;
 }
 
 header {
+    width:100%;
     height:10%;
     border-bottom: 1px solid;
 }
 
+header h1 {
+    font-size: 4em;
+    position:absolute;
+    left:15px;
+    top:15px;
+}
+
+header form {
+    display:inline-block;
+    position:absolute;
+    right:10px;
+    top:10px;
+}
+
+header form ul li {
+    text-align: right;
+}
 #main {
-    min-height: 75%;
+    width:80%;
+    height:75%;
+    padding:2.5% 10% 2.5% 10%;
 }
 
-#container{
-    width: 1000px;
-    padding: 25px;
-    background: #fff;
-    margin: 100px auto 0 auto;
+#main #title {
+    margin-bottom: 13px;
 }
 
+form #conf_save {
+    width: 70px;
+}
 
 footer {
-    height:10%;
-    width:100%;
+    height:8%;
     border-top: 1px solid;
+    padding:2% 10% 2% 10%;
 }
 
-footer ul  {
-    margin: 0 auto;
+
+footer ul li {
+    font-size: .9em;
+    display: inline;
 }

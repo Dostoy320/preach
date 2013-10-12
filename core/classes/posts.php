@@ -7,10 +7,36 @@ class Posts{
 		$this->db = $database;
 	}
 
-	public function add_post($text) {
-		$query = $this->db->prepare("INSERT INTO posts (content) VALUES (?)");
-		$query->bindValue(1, $text);
+	//Updates "saves" table, row 1, with current content of title and textarea fields.
+	public function save_post($title, $text) {
+		$query = $this->db->prepare("UPDATE posts SET title=?, content=? WHERE id='1'");
+		$query->bindValue(1, $title);
+		$query->bindValue(2, $text);
+		try {
+			$query->execute();
+		}
+		catch(PDOException $e){
+			die($e->getMessage());
+		}
+	}
 
+	public function get_saved_post() {
+		$query = $this->db->prepare("SELECT * FROM posts WHERE id = '1'");
+
+		try {
+			$rows = $query->execute();
+		    $rows = $query->fetch();
+			return $rows;
+		}
+		catch(PDOException $e){
+			die($e->getMessage());
+	    }
+	}
+
+	public function add_post($title, $text) {
+		$query = $this->db->prepare("INSERT INTO posts (title, content) VALUES (?, ?)");
+		$query->bindValue(1, $title);
+		$query->bindValue(2, $text);
 		try {
 			$query->execute();
 		}

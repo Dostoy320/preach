@@ -1,4 +1,4 @@
 preach
 ======
 
-Lightweight blog-style CMS
+Lightweight blog CMS
