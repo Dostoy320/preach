@@ -12,10 +12,11 @@ $(document).ready(function() {
 			type: "POST",
 			url: "index.php",
 			data: dataString,
-			success: function(data) {
-				$("input#save").append("<div id='conf_save'>Saved</div>");
-				$("#conf_save").fadeOut(2000);
-
+			success: function() {
+				$('input#save').after("<div id='conf_save'>Saved</div>");
+				$("#conf_save").fadeOut(2500, function() {
+					$(this).remove();
+				});
 			}
 		});
 	});

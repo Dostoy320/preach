@@ -39,8 +39,8 @@ input[name=blog_title] {
     min-width: 250px;
 }
 
-form[id=submit_post] #blog_text {
-   background-color: red;
+form[id=submit_post] {
+    width:800px;
 }
 
 form[id=submit_post] input[type=submit] {
@@ -91,6 +91,11 @@ header form ul li {
 
 form #conf_save {
     width: 70px;
+    text-align: center;
+    border: 2px solid #C8E1FA;
+    border-radius: 2px;
+    float: right;
+    margin-top: 5px;
 }
 
 footer {

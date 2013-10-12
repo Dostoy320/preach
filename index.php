@@ -66,9 +66,6 @@ if ($action == 'admin login') {
 	$text = $_POST['blog_text'];
 	$posts->save_post($title, $text);
 
-	$reply = $_REQUEST['est'];
-	echo $reply;
-
 } else if ($action == 'submit post') {
 	if(array_key_exists('blog_text', $_POST)){
 		$title = $_POST['blog_title'];

@@ -18,7 +18,6 @@ include 'header.php';
   <textarea id="blog_text" name="blog_text"><?php echo $content[2]; ?></textarea>
   </form>
 </div>
-<div class="test"></div>
 
 <script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 <script type="text/javascript" src="scripts/tinymce.config.js"></script>
