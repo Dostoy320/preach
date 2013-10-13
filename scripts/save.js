@@ -14,7 +14,7 @@ $(document).ready(function() {
 			data: dataString,
 			success: function() {
 				$('input#save').after("<div id='conf_save'>Saved</div>");
-				$("#conf_save").fadeOut(2500, function() {
+				$("#conf_save").fadeOut(2000, function() {
 					$(this).remove();
 				});
 			}
