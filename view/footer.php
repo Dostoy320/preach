@@ -4,5 +4,6 @@
 		<li>Adam Gregory</li>
 	</ul>
 </footer>
+</div>
 </body>
 </html>

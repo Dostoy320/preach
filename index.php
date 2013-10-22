@@ -16,9 +16,7 @@ if ($action == 'admin login') {
 	$username = trim($_POST['username']);
 	$password = trim($_POST['password']);
 
-	$title = "Login Page";
-
-	if (empty($username) === true || empty($password) ===true) {
+	if (empty($username) === true || empty($password) === true) {
 		$errors[] = 'We need your username and password.';
 		include('view/login.php');
 	}
@@ -34,11 +32,9 @@ if ($action == 'admin login') {
 			include('view/login.php');
 		}
 		else {
-			// username/password is correct and the login method of the $users object returns the user's id, which is stored in $login.
+			//login method returns user ID, which becomes session ID.
+			$_SESSION['id'] = $login; 
 
-			$_SESSION['id'] = $login; //The user's id is now set into the user's session in the form of $_SESSION['id']
-
-			# -------------->>>>>>Redirect the user to Logged In Welcome<<<<<<<<--------------
 			header('Location: index.php');
 			exit();
 		}
@@ -56,15 +52,22 @@ if ($action == 'admin login') {
 
 } else if ($action == 'create post') {
 	//get title and text from saves table to fill editor fields:
-	$content = $posts->get_saved_post();
+	$saves = $posts->get_saved_post();
+	//pull most recent posts to list in sidebar
+	$recent = $posts->get_recent_posts();
+	if (array_key_exists('id', $_POST)) {
+		$id = $_POST['id'];
+		$post = $posts->get_post($id);
+	}
 	//Go to text editor
 	$title = "Editor";
 	include('view/editor.php');
 
 } else if ($action == 'save post') {
+	$id = $_POST['blog_id'];
 	$title = $_POST['blog_title'];
 	$text = $_POST['blog_text'];
-	$posts->save_post($title, $text);
+	$posts->save_post($id, $title, $text);
 
 } else if ($action == 'submit post') {
 	if(array_key_exists('blog_text', $_POST)){
@@ -72,9 +75,10 @@ if ($action == 'admin login') {
 		$text = $_POST['blog_text'];
 	    $posts->add_post($title, $text);
 	    //empty title and text variables before updating saves table
+	    $id = "1";
 	    $title = "";
 	    $text = "";
-	    $posts->save_post($title, $text);
+	    $posts->save_post($id, $title, $text);
 	    //save table cleared, get last post and display it on the main page
 	    $content = $posts->get_last_post();
 		include('view/main.php');
@@ -85,4 +89,9 @@ if ($action == 'admin login') {
  		$title = "Editor";
 		include('view/editor.php');
 	}
+} else if ($action == 'retrieve_post') {
+	$id = $_POST['post_id'];
+	$content = $posts->get_post($id);
+	//ajax wants array returned as json data, so encode and echo.
+	echo json_encode($content);
 }

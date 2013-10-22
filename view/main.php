@@ -8,7 +8,7 @@ include 'header.php';
 <?php
 
 if (strlen($content[1]) > 0) {
-	echo "<div id='title'><h2>" . $content[1] . "</h2></div>";
+	echo "<div id='title'><h3>" . $content[1] . "</h3></div>";
 }
 
 echo $content[2];

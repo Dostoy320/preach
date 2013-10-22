@@ -8,6 +8,7 @@
 	<script src="scripts/modernizr.js"></script>
 </head>
 <body>
+<div id='container'>
 <header>
 <h1><a href="index.php">Preach</a></h1>
 <form action="index.php" method="post" id="test">
