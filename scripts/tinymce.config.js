@@ -1,6 +1,14 @@
 
 tinymce.init
 ({
+setup:
+function(ed)
+{
+	ed.on('init', function()
+	{
+		this.getDoc().body.style.fontSize = '14px'; // Editor default font size
+	});
+},
 autosave_interval: "30s",
 fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
 height: 400,
