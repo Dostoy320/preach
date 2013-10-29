@@ -18,7 +18,9 @@ $(document).ready(function() {
 		}
 
 	    var blog_title = $('#blog_title').val();
-	    var blog_text = tinymce.get('blog_text').getContent();
+	    // encodeURIComponent() handles special characters passed via $_POST.
+	    var blog_text = encodeURIComponent(tinymce.get('blog_text')
+	    				.getContent());
 
 	    var dataString = 'action=save post&blog_id=' + blog_id + '&blog_text='
 	    				 + blog_text + '&blog_title=' + blog_title;
@@ -26,6 +28,7 @@ $(document).ready(function() {
 		    $.ajax({
 			    type: "POST",
 			    url: "index.php",
+			    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			    data: dataString,
 			    success: function() {
 				    $('input#save').after("<div id='conf_save'>Saved</div>");

@@ -8,7 +8,9 @@ Currently working:
 
 To-Do:
 
-+ Image support
++ Better image support
 + Tags
++ Archive list on main display page
++ jQuery-based "Recent Posts" that update on ajax success
 
 

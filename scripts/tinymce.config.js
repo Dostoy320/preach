@@ -1,6 +1,8 @@
 
 tinymce.init
 ({
+element_format: "html",
+entity_encoding: "numeric",
 setup:
 function(ed)
 {
@@ -15,6 +17,6 @@ height: 400,
 resize: "both",
 save_enablewhendirty: false,
 selector:'textarea',
-plugins: 'link image textcolor',
+plugins: 'link image textcolor code',
 toolbar1: 'undo redo | bold italic | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
 });

@@ -81,6 +81,7 @@ if ($action == 'admin login') {
 	    $posts->save_post($id, $title, $text);
 	    //save table cleared, get last post and display it on the main page
 	    $content = $posts->get_last_post();
+	    $reveal = $_POST['blog_text'];
 		include('view/main.php');
 
  	} else {
