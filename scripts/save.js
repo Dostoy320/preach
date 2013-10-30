@@ -1,6 +1,27 @@
 $(document).ready(function() {
 
 
+
+	// Populate recent posts list in sidebar.
+	function listRecent(recent) {
+		postList = $('#recentPosts');
+		postList.empty();
+		for (x in recent) {
+			// Name post "Untitled" if no title present.
+			if (recent[x].title == "") {
+				title = "Untitled";
+			}
+			else {
+				title = recent[x].title;
+			}
+			postList.append("<li value='" + recent[x].id +
+				"'><a href='#'>" + title + "</a></li>");
+		}
+	};
+
+	listRecent(recent_list);
+
+
 	/******
 	Clicking the "save post" button assigns title and text fields to variables.
 	These variables are sent via ajax to save to the database.
@@ -30,8 +51,11 @@ $(document).ready(function() {
 			    url: "index.php",
 			    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			    data: dataString,
-			    success: function() {
+			    dataType: 'json',
+			    success: function(data) {
+			    	recent = data;
 				    $('input#save').after("<div id='conf_save'>Saved</div>");
+				    listRecent(data);
 				    $("#conf_save").fadeOut(2000, function() {
 					    $(this).remove();
 				    });
@@ -47,7 +71,7 @@ $(document).ready(function() {
 	******/
 
 	// Get post ID and load confirmation popup when post is clicked in sidebar.
-	$('#recentPosts li').click(function() {
+	$('#recentPosts').on("click", "li", function() {
 		var post_id = $(this).attr('value');
 		// Create string to send via POST.
 		var dataString = 'action=retrieve_post&post_id=' + post_id;
@@ -86,4 +110,5 @@ $(document).ready(function() {
 		tinymce.get('blog_text').setContent("");
 		$('#submit').prop('disabled', false);
 	})
+
 });

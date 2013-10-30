@@ -31,22 +31,15 @@ include 'header.php';
   <div id='sidebar'>
   <h4>Recent Posts</h4>
     <ul id="recentPosts">
-      <?php
-      foreach($recent as $ordered) {
-        if ($ordered[title] == "") {
-          $title = "Untitled!";
-        }
-        else {
-          $title = $ordered[title];
-        }
-        echo "<li value='".$ordered[id]."'><a href='#'>" . $title . "</a></li>";
-      }
-      ?>
+    <!-- Recent Posts lists populated by listRecent() in save.js -->
+    </ul>
   </div>
 </div>
 
 <?php print_r($post); ?>
 
+<script type="text/javascript">recent_list = <?php echo json_encode($recent); ?>
+</script>
 <script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js">
 </script>
 <script type="text/javascript" src="scripts/tinymce.config.js"></script>

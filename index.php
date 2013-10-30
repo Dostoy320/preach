@@ -68,6 +68,8 @@ if ($action == 'admin login') {
 	$title = $_POST['blog_title'];
 	$text = $_POST['blog_text'];
 	$posts->save_post($id, $title, $text);
+	$recent = $posts->get_recent_posts();
+	echo json_encode($recent);
 
 } else if ($action == 'submit post') {
 	if(array_key_exists('blog_text', $_POST)){
