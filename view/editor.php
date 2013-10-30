@@ -36,9 +36,11 @@ include 'header.php';
   </div>
 </div>
 
-<?php print_r($post); ?>
 
-<script type="text/javascript">recent_list = <?php echo json_encode($recent); ?>
+
+<script type="text/javascript">
+// Assign recent posts array to variable for listRecent()
+recent_list = <?php echo json_encode($recent); ?>
 </script>
 <script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js">
 </script>

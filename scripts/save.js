@@ -55,7 +55,7 @@ $(document).ready(function() {
 			    success: function(data) {
 			    	recent = data;
 				    $('input#save').after("<div id='conf_save'>Saved</div>");
-				    listRecent(data);
+				    listRecent(data); // Populate post lists with title changes.
 				    $("#conf_save").fadeOut(2000, function() {
 					    $(this).remove();
 				    });
