@@ -34,7 +34,7 @@ include 'header.php';
       <?php
       foreach($recent as $ordered) {
         if ($ordered[title] == "") {
-          $title = "Untitled";
+          $title = "Untitled!";
         }
         else {
           $title = $ordered[title];
