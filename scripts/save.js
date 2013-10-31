@@ -31,6 +31,9 @@ $(document).ready(function() {
 	var retrieved_id = 0;
 
 	$('input#save').click(function() {
+		// Display "Saved" alert
+		$('input#save').after("<div id='conf_save'>Saved</div>");
+
 		if (retrieved_id != 0) {
 			var blog_id = retrieved_id;
 		}
@@ -54,8 +57,8 @@ $(document).ready(function() {
 			    dataType: 'json',
 			    success: function(data) {
 			    	recent = data;
-				    $('input#save').after("<div id='conf_save'>Saved</div>");
 				    listRecent(data); // Populate post lists with title changes.
+				    // Remove "Saved" alert.
 				    $("#conf_save").fadeOut(2000, function() {
 					    $(this).remove();
 				    });
