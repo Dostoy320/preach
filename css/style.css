@@ -162,6 +162,11 @@ footer {
     border-top: 3px solid #6A7D85;
     padding:2% 10% 2% 10%;
 }
+
+footer ul {
+    margin-left: -90px;
+}
+
 footer ul li {
     font-size: .9em;
     display: inline;
