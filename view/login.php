@@ -16,7 +16,7 @@ include 'header.php';
 		<form method="post" action="index.php" name="login_form">
 		<input type="hidden" name="action" value="login_attempt">
 			<h4>Username:</h4>
-			<input type="text" name="username">
+			<input type="text" name="username" autofocus>
 			<h4>Password:</h4>
 			<input type="password" name="password">
 			<br>
