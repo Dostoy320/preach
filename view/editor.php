@@ -10,8 +10,8 @@ include 'header.php';
 <div id='submit_choice' class='popup'>
   <p>Select Post Type:</p>
   <select>
-      <option value='front_page'>Front Page</option>
-      <option value='link_list'>Link List</option>
+      <option value='front page'>Front Page</option>
+      <option value='link list'>Link List</option>
       <input type="button" id="submit_button" value="Submit">
       <input type="button" id="submit_button" value="Cancel">
   </select>
@@ -25,6 +25,12 @@ include 'header.php';
 <!-- Confirm Submit Complete -->
 <div id='submit_complete' class='popup'>
   <p>Post submitted!</p>
+</div>
+<!-- Confirm Delete Post -->
+<div id='del_popup' class='popup'>
+  <p>Delete post?</p>
+  <input type="submit" value="Yes">
+  <input type="submit" value="No">
 </div>
 <!-- End Popups -->
 

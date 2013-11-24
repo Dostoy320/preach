@@ -103,4 +103,10 @@ if ($action == 'admin login') {
 	$content = $posts->get_post($id);
 	//ajax wants array returned as json data, so encode and echo.
 	echo json_encode($content);
+} else if ($action == 'delete_post') {
+	$id = $_POST['post_id'];
+	$posts->delete_post($id);
+	$recent = $posts->get_recent_posts();
+	echo json_encode($recent);
 }
+

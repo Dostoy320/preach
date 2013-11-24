@@ -132,6 +132,28 @@ form #conf_save {
     border-radius: 3px;
     padding: 2px;
 }
+#sidebar ul li .list_link {
+    width: 85%;
+    display: inline-block;
+    cursor: pointer;
+}
+#sidebar ul li #post_type {
+    font-size: .7em;
+}
+#sidebar ul #post_delete {
+    float: right;
+    width: 10px;
+    padding: 0 3px 0 3px;
+    background-color: rgba(255, 0, 0, 0.4);
+    display: inline-block;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 2px;
+}
+#sidebar ul #post_delete:hover {
+    background-color: rgba(255, 0, 0, 0.7);
+}
 #sidebar ul li:nth-child(odd) {
     background-color: #EBEEEF;
 }

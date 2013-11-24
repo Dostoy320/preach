@@ -14,8 +14,9 @@ $(document).ready(function() {
 			else {
 				title = recent[x].title;
 			}
-			postList.append("<li value='" + recent[x].id +
-				"'><a href='#'>" + title + "</a></li>");
+			postList.append("<li><div class='list_link' value='" + recent[x].id + 
+				"'><a href='#'><div id='post_type'>" + recent[x].type + "</div>" + title + "</a></div><div id='post_delete' value='" +
+				recent[x].id + "'>X</div></li>");
 		}
 	};
 
@@ -115,7 +116,7 @@ $(document).ready(function() {
 	******/
 
 	// Get post ID and load confirmation popup when post is clicked in sidebar.
-	$('#recentPosts').on("click", "li", function() {
+	$('#recentPosts').on("click", ".list_link", function() {
 		var post_id = $(this).attr('value');
 		// Create string to send via POST.
 		var dataString = 'action=retrieve_post&post_id=' + post_id;
@@ -144,6 +145,40 @@ $(document).ready(function() {
 			}
 			else {
 				$('#edit_popup').fadeOut(100);
+			}
+		})
+	});
+
+	/******
+	Clicking "del" fires a confirmation popup.
+	On confirmation, the post is deleted.
+	******/
+		// Get post ID when delete icon is clicked
+		$('#recentPosts').on("click", "#post_delete", function() {
+		var post_id = $(this).attr('value');
+		// Create string to send via POST.
+		var dataString = 'action=delete_post&post_id=' + post_id;
+		$('#del_popup').fadeIn(100);
+
+		// Get value Yes/No from confirmation
+		$('#del_popup input').click(function() {
+			load_choice = $(this).attr('value');
+			$('#del_popup input').unbind('click');
+			if (load_choice == "Yes") {
+				// Send post_id via ajax to index.php.
+				$.ajax({
+					type: "POST",
+					url: "index.php",
+					data: dataString,
+					dataType: 'json',
+					success: function(data) {
+						$('#del_popup').fadeOut(100);
+				    listRecent(data); // Populate post lists with title changes.
+					}
+				});
+			}
+			else {
+				$('#del_popup').fadeOut(100);
 			}
 		})
 	});

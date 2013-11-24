@@ -84,14 +84,25 @@ class Posts{
 
 		$min = $max[0] - 6; // This value sets the number of posts returns.
 
-		$query1 = "SELECT id, title, datetime, type FROM posts ORDER BY id DESC
-					LIMIT 50";
+		$query1 = "SELECT id, title, datetime, type FROM posts WHERE id != 1
+					ORDER BY id DESC LIMIT 50";
 	    try {
 	    	$result = $this->db->query($query1);
 			$result = $result->fetchAll();
 			return $result;
 		}
 		catch(PDOException $e) {
+			die($e->getMessage());
+		}
+	}
+
+	public function delete_post($id) {
+		$query = $this->db->prepare("DELETE FROM posts WHERE id = ?");
+		$query->bindValue(1, $id);
+		try {
+			$post = $query->execute();
+		}
+		catch(PDOException $e){
 			die($e->getMessage());
 		}
 	}
