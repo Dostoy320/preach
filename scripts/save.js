@@ -9,7 +9,7 @@ $(document).ready(function() {
 		for (x in recent) {
 			// Name post "Untitled" if no title present.
 			if (recent[x].title == "") {
-				title = "Untitled";
+				title = recent[x].datetime;
 			}
 			else {
 				title = recent[x].title;

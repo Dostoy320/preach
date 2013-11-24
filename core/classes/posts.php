@@ -84,14 +84,17 @@ class Posts{
 
 		$min = $max[0] - 6; // This value sets the number of posts returns.
 
-		$query1 = "SELECT id, title FROM posts WHERE id <= '$max[0]' AND id > $min";
-		$result = $this->db->query($query1);
-		$result = $result->fetchAll();
-		return $result;
-
+		$query1 = "SELECT id, title, datetime, type FROM posts ORDER BY id DESC
+					LIMIT 50";
+	    try {
+	    	$result = $this->db->query($query1);
+			$result = $result->fetchAll();
+			return $result;
+		}
+		catch(PDOException $e) {
+			die($e->getMessage());
+		}
 	}
-
-	
 }
 
 ?>
