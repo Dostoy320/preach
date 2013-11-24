@@ -21,6 +21,47 @@ $(document).ready(function() {
 
 	listRecent(recent_list);
 
+	/******
+	Clicking the "submit post" button gives the choice of destination,
+	then sends the current title and text to a new row	in the table.
+	******/
+
+	// On click show popup with destination choices.
+	$('input#submit').click(function() {
+		$('#submit_choice').fadeIn(200);
+		});
+
+		// Remove choice popup on submit and send via ajax
+		$('#submit_choice input[type=button]').click(function() {
+			var confirm = $(this).val();
+			if (confirm == 'Cancel') {
+				$('#submit_choice').fadeOut(200);
+			} else {
+			$('#submit_choice').fadeOut(200);
+			var destination = $('#submit_choice select').val();
+			var blog_title = $('#blog_title').val();
+		  // encodeURIComponent() handles special characters passed via $_POST.
+		  var blog_text = encodeURIComponent(tinymce.get('blog_text').getContent());
+
+		  var dataString = 'action=submit post&blog_text=' + blog_text + '&blog_title='
+		  				+ blog_title + '&blog_type=' + destination;
+
+		  $.ajax({
+		  	type: "POST",
+		  	url: "index.php",
+		  	contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		  	data: dataString,
+		  	dataType: "json",
+		  	success: function(data) {
+		  		$('#submit_complete').fadeIn(200).delay(1000).fadeOut(400);
+					listRecent(data); // Populate post lists with title changes.
+					$('#blog_title').val("");
+					tinymce.get('blog_text').setContent("");
+		  	}
+		 });
+		}
+	});
+
 
 	/******
 	Clicking the "save post" button assigns title and text fields to variables.
@@ -78,12 +119,12 @@ $(document).ready(function() {
 		var post_id = $(this).attr('value');
 		// Create string to send via POST.
 		var dataString = 'action=retrieve_post&post_id=' + post_id;
-		$('#popup').fadeIn(100);
+		$('#edit_popup').fadeIn(100);
 
 		// Get value Yes/No from confirmation
-		$('#popup input').click(function() {
+		$('#edit_popup input').click(function() {
 			load_choice = $(this).attr('value');
-			$('#popup input').unbind('click');
+			$('#edit_popup input').unbind('click');
 			if (load_choice == "Yes") {
 				// Send post_id via ajax to index.php to retrieve selected post.
 				$.ajax({
@@ -92,7 +133,7 @@ $(document).ready(function() {
 					data: dataString,
 					dataType: 'json',
 					success: function(data) {
-						$('#popup').fadeOut(100);
+						$('#edit_popup').fadeOut(100);
 						$('#submit').prop('disabled', true);
 						$('#blog_title').val(data.title);
 						tinymce.get('blog_text').setContent(data.content);
@@ -102,7 +143,7 @@ $(document).ready(function() {
 				});
 			}
 			else {
-				$('#popup').fadeOut(100);
+				$('#edit_popup').fadeOut(100);
 			}
 		})
 	});

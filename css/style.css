@@ -138,7 +138,8 @@ form #conf_save {
 #sidebar ul li:hover {
     background-color: #C4CCA2;
 }
-#popup {
+
+.popup {
     width: 150px;
     height: 70px;
     border: 1px solid #8A8B8B;
@@ -155,6 +156,18 @@ form #conf_save {
     -webkit-box-shadow:0 0 5px #999; 
     box-shadow:0px 0px 5px #999;
 }
+#submit_choice {
+    width: 180px;
+    height: 100px;
+}
+#submit_choice #submit_button {
+    margin-top: 10px;
+}
+#submit_complete {
+    height: 30px;
+}
+
+
 
 footer {
     height:5%;

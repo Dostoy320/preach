@@ -48,10 +48,11 @@ class Posts{
 		}
 	}
 
-	public function add_post($title, $text) {
-		$query = $this->db->prepare("INSERT INTO posts (title, content) VALUES (?, ?)");
+	public function add_post($title, $text, $type) {
+		$query = $this->db->prepare("INSERT INTO posts (title, content, type) VALUES (?, ?, ?)");
 		$query->bindValue(1, $title);
 		$query->bindValue(2, $text);
+		$query->bindValue(3, $type);
 		try {
 			$query->execute();
 		}
@@ -80,7 +81,7 @@ class Posts{
 		$query = "SELECT MAX(id) from posts";
 		$max = $this->db->query($query);
 		$max = $max->fetch();
-		
+
 		$min = $max[0] - 6; // This value sets the number of posts returns.
 
 		$query1 = "SELECT id, title FROM posts WHERE id <= '$max[0]' AND id > $min";

@@ -3,8 +3,14 @@ require 'core/init.php';
 
 if(isset($_POST['action'])) {
 	$action = $_POST['action'];
+// If action isn't set, check if logged in.
+// Redirect to login page if not.
 } else {
-	$action = 'view_main';
+	if (!isset($_SESSION['id'])) {
+		$action = 'admin login';
+	} else {
+		$action = 'create post';
+	}
 }
 
 if ($action == 'admin login') {
@@ -75,16 +81,16 @@ if ($action == 'admin login') {
 	if(array_key_exists('blog_text', $_POST)){
 		$title = $_POST['blog_title'];
 		$text = $_POST['blog_text'];
-	    $posts->add_post($title, $text);
+		$type = $_POST['blog_type'];
+	    $posts->add_post($title, $text, $type);
 	    //empty title and text variables before updating saves table
 	    $id = "1";
 	    $title = "";
 	    $text = "";
 	    $posts->save_post($id, $title, $text);
-	    //save table cleared, get last post and display it on the main page
-	    $content = $posts->get_last_post();
-	    $reveal = $_POST['blog_text'];
-		include('view/main.php');
+	    //save table cleared
+	    $recent = $posts->get_recent_posts();
+	    echo json_encode($recent);
 
  	} else {
 
