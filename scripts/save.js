@@ -116,7 +116,8 @@ $(document).ready(function() {
 	******/
 
 	// Get post ID and load confirmation popup when post is clicked in sidebar.
-	$('#recentPosts').on("click", ".list_link", function() {
+	
+	var runner = function() {
 		var post_id = $(this).attr('value');
 		// Create string to send via POST.
 		var dataString = 'action=retrieve_post&post_id=' + post_id;
@@ -128,9 +129,12 @@ $(document).ready(function() {
 										);
 		$('.conf').slideDown(200);
 		$('.cancel').slideDown(200);
+		$('#recentPosts').off("click");
 
 		// Remove edit options and retrieve post via ajax
 		$('.conf').click(function() {
+			$('#recentPosts').on("click", ".list_link", runner);
+			$('#recentPosts').bind('click');
 			$('.conf').slideUp(200);
 			$('.cancel').slideUp(200);
 			$(this).parent().animate({height: '-=30px'});
@@ -143,7 +147,6 @@ $(document).ready(function() {
 					data: dataString,
 					dataType: 'json',
 					success: function(data) {
-						$('#edit_popup').fadeOut(100);
 						$('#submit').prop('disabled', true);
 						$('#blog_title').val(data.title);
 						tinymce.get('blog_text').setContent(data.content);
@@ -154,15 +157,16 @@ $(document).ready(function() {
 			});
 		// Remove edit options on Cancel
 		$('.cancel').click(function() {
+			$('#recentPosts').on("click", ".list_link", runner);
 			$('.conf').slideUp(200);
 			$('.cancel').slideUp(200);
 			$(this).parent().animate({height: '-=30px'});
 			$('.conf').remove();
 			$('.cancel').remove();
 		});
-	});
+	}
 
-	//});
+	$('#recentPosts').on("click", ".list_link", runner);
 
 
 
