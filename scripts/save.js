@@ -120,13 +120,22 @@ $(document).ready(function() {
 		var post_id = $(this).attr('value');
 		// Create string to send via POST.
 		var dataString = 'action=retrieve_post&post_id=' + post_id;
-		$('#edit_popup').fadeIn(100);
+		// Create edit options for clicked post
+		$(this).parent().animate({height: '+=30px'});
+		$(this).parent().append(
+										"<div class='conf'>Edit Post</div>" +
+										 "<div class='cancel'>Cancel</div>"
+										);
+		$('.conf').slideDown(200);
+		$('.cancel').slideDown(200);
 
-		// Get value Yes/No from confirmation
-		$('#edit_popup input').click(function() {
-			load_choice = $(this).attr('value');
-			$('#edit_popup input').unbind('click');
-			if (load_choice == "Yes") {
+		// Remove edit options and retrieve post via ajax
+		$('.conf').click(function() {
+			$('.conf').slideUp(200);
+			$('.cancel').slideUp(200);
+			$(this).parent().animate({height: '-=30px'});
+			$('.conf').remove();
+			$('.cancel').remove();
 				// Send post_id via ajax to index.php to retrieve selected post.
 				$.ajax({
 					type: "POST",
@@ -142,12 +151,20 @@ $(document).ready(function() {
 						return retrieved_id;
 					}
 				});
-			}
-			else {
-				$('#edit_popup').fadeOut(100);
-			}
-		})
+			});
+		// Remove edit options on Cancel
+		$('.cancel').click(function() {
+			$('.conf').slideUp(200);
+			$('.cancel').slideUp(200);
+			$(this).parent().animate({height: '-=30px'});
+			$('.conf').remove();
+			$('.cancel').remove();
+		});
 	});
+
+	//});
+
+
 
 	/******
 	Clicking "del" fires a confirmation popup.

@@ -16,12 +16,6 @@ include 'header.php';
       <input type="button" id="submit_button" value="Cancel">
   </select>
 </div>
-<!-- Confirmation popup for recent posts on sidebar -->
-<div id='edit_popup' class='popup'>
-  <p>Edit post?</p>
-  <input type="submit" value="Yes">
-  <input type="submit" value="No">
-</div>
 <!-- Confirm Submit Complete -->
 <div id='submit_complete' class='popup'>
   <p>Post submitted!</p>

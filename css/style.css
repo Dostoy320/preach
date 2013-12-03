@@ -132,6 +132,30 @@ form #conf_save {
     border-radius: 3px;
     padding: 2px;
 }
+#sidebar ul li .conf {
+    height: 20px;
+    width: 50%;
+    margin: 6px 10px 5px 10px;
+    display: inline-block;
+    float: left;
+    background-color: orange;
+    cursor: pointer;
+    display: none;
+    text-align: center;
+    border-radius: 1px;
+}
+#sidebar ul li .cancel {
+    height: 20px;
+    width: 30%;
+    margin: 6px 10px 5px 10px;
+    display: inline-block;
+    float: left;
+    background-color: orange;
+    cursor: pointer;
+    display: none;
+    text-align: center;
+    border-radius: 1px;
+}
 #sidebar ul li .list_link {
     width: 85%;
     display: inline-block;
