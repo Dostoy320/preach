@@ -29,7 +29,11 @@ body{
     width:100%;
     font-family: serif;
     overflow: hidden;
- }
+}
+/* Removes stupid dotted line nonsense around focused links */
+:focus {
+    outline: none;
+}
 input[type=submit] {
     border:1px solid #969696;
     margin:2px;
