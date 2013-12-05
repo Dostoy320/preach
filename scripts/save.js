@@ -14,7 +14,7 @@ $(document).ready(function() {
 			else {
 				title = recent[x].title;
 			}
-			postList.append("<li><div class='list_link' value='" + recent[x].id + 
+			postList.append("<li><div class='list_link' value='" + recent[x].id +
 				"'><a href='#'><div id='post_type'>" + recent[x].type + "</div>" + title + "</a></div><div id='post_delete' value='" +
 				recent[x].id + "'>X</div></li>");
 		}
@@ -110,14 +110,14 @@ $(document).ready(function() {
 
 
 	/******
-	Clicking recently saved posts fires a confirmation popup.
+	Clicking recently saved posts opens a confirmation element.
 	On confimation, the clicked post's id is sent via ajax.
 	Title and Content are returned via json and used to fill the editor.
 	******/
 
-	// Get post ID and load confirmation popup when post is clicked in sidebar.
-	
-	var runner = function() {
+	// Get post ID and load confirmation element when post is clicked in sidebar.
+
+	var editRecent = function() {
 		var post_id = $(this).attr('value');
 		// Create string to send via POST.
 		var dataString = 'action=retrieve_post&post_id=' + post_id;
@@ -133,8 +133,9 @@ $(document).ready(function() {
 
 		// Remove edit options and retrieve post via ajax
 		$('.conf').click(function() {
-			$('#recentPosts').on("click", ".list_link", runner);
-			$('#recentPosts').bind('click');
+			$('#recentPosts').on("click", ".list_link", editRecent);
+			$('#recentPosts').on("click", "#post_delete", deleteRecent);
+		//	$('#recentPosts').bind('click');
 			$('.conf').slideUp(200);
 			$('.cancel').slideUp(200);
 			$(this).parent().animate({height: '-=30px'});
@@ -157,16 +158,18 @@ $(document).ready(function() {
 			});
 		// Remove edit options on Cancel
 		$('.cancel').click(function() {
-			$('#recentPosts').on("click", ".list_link", runner);
+			$('#recentPosts').on("click", ".list_link", editRecent);
+			$('#recentPosts').on("click", "#post_delete", deleteRecent);
 			$('.conf').slideUp(200);
 			$('.cancel').slideUp(200);
 			$(this).parent().animate({height: '-=30px'});
 			$('.conf').remove();
 			$('.cancel').remove();
+			$('#recentPosts').on("click");
 		});
 	}
 
-	$('#recentPosts').on("click", ".list_link", runner);
+	$('#recentPosts').on("click", ".list_link", editRecent);
 
 
 
@@ -175,7 +178,7 @@ $(document).ready(function() {
 	On confirmation, the post is deleted.
 	******/
 		// Get post ID when delete icon is clicked
-		$('#recentPosts').on("click", "#post_delete", function() {
+		var deleteRecent = function() {
 		var post_id = $(this).attr('value');
 		// Create string to send via POST.
 		var dataString = 'action=delete_post&post_id=' + post_id;
@@ -201,8 +204,10 @@ $(document).ready(function() {
 			else {
 				$('#del_popup').fadeOut(100);
 			}
-		})
-	});
+		});
+	}
+
+	$('#recentPosts').on("click", "#post_delete", deleteRecent);
 
 	// New post button clears title and editor fields and enables submit.
 	$('input#new_post').click(function() {
